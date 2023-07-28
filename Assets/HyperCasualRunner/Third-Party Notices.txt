@@ -1,0 +1,21 @@
+Font:
+
+Name: Itim
+License Path: Assets/HyperCasualRunner/Demos/Fonts/Itim/OFL.txt
+
+Models:
+
+Name: food-kit-1.3
+License Path: Assets/HyperCasualRunner/Demos/ThirdParty/food-kit-1.3/License.txt
+
+Name: KayKit Mini-Game Variety Pack 1.2
+License Path: Assets/HyperCasualRunner/Demos/ThirdParty/KayKit Mini-Game Variety Pack 1.2/License.txt
+
+Name: kenney_carkit_1.6
+License Path: Assets/HyperCasualRunner/Demos/ThirdParty/kenney_carkit_1.6/License.txt
+
+Name: naughty-attributes (open source)
+License Path: https://github.com/dbrizov/NaughtyAttributes
+
+Name: Ultimate Animated Character Pack - Nov 2019
+License Path: Assets/HyperCasualRunner/Demos/ThirdParty/Ultimate Animated Character Pack - Nov 2019/License.txt

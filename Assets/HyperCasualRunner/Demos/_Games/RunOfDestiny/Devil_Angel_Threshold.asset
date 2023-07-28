@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30dd12e977834c3ab0c8e7d92787ec50, type: 3}
+  m_Name: Devil_Angel_Threshold
+  m_EditorClassIdentifier: 
+  _value: 500000006e0000008200000096000000a0000000aa000000b4000000dc000000040100002c010000540100007c010000
