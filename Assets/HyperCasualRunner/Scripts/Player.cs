@@ -19,6 +19,9 @@ namespace HyperCasualRunner
     [DisallowMultipleComponent]
     public class Player : MonoBehaviour, IInteractor
     {
+        private static Player instance;
+        public static Player Instance { get { return instance; } }
+
         [SerializeField, Required] RunnerMover _runnerMover;
         [SerializeField, Required] PopulationManagerBase _populationManagerBase;
         [SerializeField, Required] InputChannelSO _inputChannelSO;
@@ -29,13 +32,13 @@ namespace HyperCasualRunner
         [SerializeField, ShowIf(nameof(_useAnimator))] AnimatorModifier _animatorModifier;
         [SerializeField, ShowIf(nameof(_useAnimation))] AnimationModifier _animationModifier;
 
-        private float CoinValue = 1f;
-        private float ObstacleValue = -10f;
+        private float CoinValue = 100f;
+        private float ObstacleValue = -370f;
 
         ITickable[] _tickables;
 
-        float Charge = 50f;
-        
+        float Charge;
+
         [SerializeField] private float duraiton;
         [SerializeField] private float strenght;
         [SerializeField] private int vibrato;
@@ -45,6 +48,17 @@ namespace HyperCasualRunner
 
         void Awake()
         {
+            if (instance == null)
+            {
+                instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+
+            OnInteractionEnded();
+
             _runnerMover.Initialize();
             _populationManagerBase.Initialize();
 
@@ -110,8 +124,6 @@ namespace HyperCasualRunner
             _runnerMover.TryStartMovement();
             if (_useAnimation)
             {
-
-                Debug.Log("go" + Charge);
                 _animationModifier.PlayLocomotion(1f);
             }
             else if (_useAnimator)
@@ -122,8 +134,6 @@ namespace HyperCasualRunner
 
         void OnTouchUp()
         {
-
-            Debug.Log("stop" + Charge);
             bool isMovementStopped = _runnerMover.TryStopMovement();
             if (!isMovementStopped)
             {
@@ -150,11 +160,11 @@ namespace HyperCasualRunner
             if (other.gameObject.CompareTag("Coin"))
             {
                 other.GetComponent<CollectableObject>().SetCollected();
-                UIJoystick.İnstance.AddCountCoins(CoinValue);            
+                UIJoystick.Instance.AddCountCoins(CoinValue);            
             }
             if (other.gameObject.CompareTag("Obstacle") && isShakeing == false) 
             {
-                UIJoystick.İnstance.AddCountCoins(ObstacleValue);                
+                UIJoystick.Instance.AddCountCoins(ObstacleValue);
                 StartCoroutine(ShakeAnimation(1f));               
             }
 
@@ -172,7 +182,8 @@ namespace HyperCasualRunner
             }
             if (other.gameObject.CompareTag("FinishLine"))
             {
-                Debug.Log("oyun bitti");
+                Debug.Log("Game Over");
+                EventManager.levelSuccessEvent.Invoke();
             }
         }       
     }

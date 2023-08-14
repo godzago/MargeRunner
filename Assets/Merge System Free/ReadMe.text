@@ -1,0 +1,29 @@
+BASIC MERGE SYSTEM
+
+The initial idea was going only uGUI to achieve a merge mechanic. Instead of uGUI events and interfaces, I've used sprites and raycast to handle interactions. Besides, it is easy to add effects and particle to non-UI GameObjects. I guess it would be easy to implement all-range merge systems to with this workflow. Whether mobile desktop or console, it should work.
+
+-Project contains 3 main component: Item, Slot and Controller. Resources folder contains prefabs and GameResources ScriptableObject. System depends on those prefabs.
+
+-Controller have references to all Slots in the scene and when you left click to any Slot, regarding to its state, 
+user will be able to carry the item. To carry an item, Controller creates a dummy item and holds only references to its parent slot, id and sprite data. 
+
+-In Update, Controller checks click inputs.
+
+-Most important part is SendRaycast method in the Controller. This method sends a raycast from mouse position and checks if it hit a slot according to it states. Based on slot's state, an event invokes. So I've created OnItemSelected, OnItemMergedWithTarget and OnItemCarryFail methods to make it easy to modify the system.
+
+-Slot handles its state and Controller checks on drop event if merge is possible or not.
+
+-Separating the item and the carry object was easiest way to handle interactions I could find. 
+
+-GameResources object can be created in project by right clicking or create button in project. This file should place in Resources folder and named exactly GameResources, as Utils needs to find that file on awake.
+
+-Utils class bridges between GameResources and Controller to get item info.
+
+-I've made a GameResources as ScriptableObject to make easy changes and this way it's very easy to visualize progress of items.
+
+
+
+
+This project is also on github. Make an issue to ask help and contribute appreciated.
+
+hhttps://github.com/cemuka/basic-merge-system

@@ -16,6 +16,5 @@ public class EventManager : MonoBehaviour
     public static readonly UnityEvent AfterFlag = new();
     public static readonly UnityEvent Flag2 = new();
     public static readonly UnityEvent Flag3 = new();
-
     }
 }

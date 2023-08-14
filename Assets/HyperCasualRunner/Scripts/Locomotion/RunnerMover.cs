@@ -1,6 +1,13 @@
 ﻿using System;
+using HyperCasualRunner.GenericModifiers;
+using HyperCasualRunner.Interfaces;
+using HyperCasualRunner.Locomotion;
+using HyperCasualRunner.PopulationManagers;
+using HyperCasualRunner.ScriptableObjects;
 using NaughtyAttributes;
 using UnityEngine;
+using DG.Tweening;
+using System.Collections;
 using UnityEngine.UI;
 
 namespace HyperCasualRunner.Locomotion
@@ -44,18 +51,23 @@ namespace HyperCasualRunner.Locomotion
         Vector3 _groundNormal = Vector3.up;
 
         [SerializeField] Slider slider;
-        [SerializeField] float countdownTime = 2f;
+        [SerializeField] float countdownTime;
         private float currentTime;
 
         private float speedXValue = 3f;
 
+        [SerializeField] ParticleSystem particle;
+
         public float ForwardMoveSpeed { get => _forwardMoveSpeed; set => _forwardMoveSpeed = value; }
+
         void Start()
         {
-            currentTime = countdownTime;
-            slider.maxValue = countdownTime;
+            currentTime = PlayerPrefs.GetFloat("energy");
+            slider.maxValue = 100f;
             slider.value = currentTime;
+            particle.Stop();
         }
+
         public void Initialize()
         {
             _movementConstrainer.Initialize(gameObject);
@@ -90,6 +102,7 @@ namespace HyperCasualRunner.Locomotion
             {
                 return;
             }
+                    
                 var trans = transform;
                 Vector3 horizontalMovementRaw = trans.right * moveDirection.x;
                 Vector3 forwardMovementRaw = trans.forward * _forwardMoveSpeed * speedXValue;
@@ -144,14 +157,14 @@ namespace HyperCasualRunner.Locomotion
         {
             if (currentTime > 0 && _canGoForward == 1)
             {
-                currentTime -= Time.deltaTime;
+                currentTime -= Time.deltaTime * countdownTime;
                 slider.value = currentTime;
             }
 
             if (currentTime < 0)
             {
-                speedXValue = 0f;
                 EventManager.levelFailEvent.Invoke();
+                particle.Play();
             }           
         }
     }

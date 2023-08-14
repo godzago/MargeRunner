@@ -1,7 +1,17 @@
 ﻿using HyperCasualRunner.ScriptableObjects;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
+using HyperCasualRunner.GenericModifiers;
+using HyperCasualRunner.Interfaces;
+using HyperCasualRunner.Locomotion;
+using HyperCasualRunner.PopulationManagers;
+using NaughtyAttributes;
+using DG.Tweening;
+using System.Collections;
+
 
 namespace HyperCasualRunner
 {
@@ -10,7 +20,8 @@ namespace HyperCasualRunner
     /// </summary>
     public class UIJoystick : MonoBehaviour
     {
-        public static UIJoystick İnstance;
+        private static UIJoystick instance;
+        public static UIJoystick Instance { get { return instance; } }
 
         const float TAP_THRESHOLD = 0.2f;
 
@@ -33,6 +44,7 @@ namespace HyperCasualRunner
         [SerializeField] Transform iconTrasfrom;
         private Camera mainCamera;
 
+        [SerializeField] private Button succesButton , failButton;
 
         [SerializeField] private GameObject failPanel, succesPanel;
 
@@ -41,9 +53,21 @@ namespace HyperCasualRunner
         [SerializeField] Animator animator2;
         [SerializeField] Animator animator3;
 
+        [SerializeField] ParticleSystem[] flagAllParticle;
+
+        [SerializeField] ParticleSystem[] particles; 
+
         void Awake()
         {
-            İnstance = this;
+                if (instance == null)
+                {
+                    instance = this;
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
+
             _initialOpacity = _background.alpha;
             _knobTransform = _background.transform.GetChild(0);
             _inputChannelSO.SetActiveInput += InputChannelSoOnSetActiveInput;
@@ -72,6 +96,20 @@ namespace HyperCasualRunner
         private void Start()
         {
             mainCamera = Camera.main;
+            coinValue = PlayerPrefs.GetFloat("money");
+            scorText.text = coinValue.ToString();
+            if (succesButton != null)
+            {
+                succesButton.onClick.AddListener(NextScene);
+            }
+            if (failButton != null)
+            {
+                failButton.onClick.AddListener(NextScene);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                particles[i].Stop();
+            }
         }
         void Update()
         {
@@ -133,7 +171,7 @@ namespace HyperCasualRunner
 
             if (!_verticalAxisEnabled)
             {
-                deltaPosition.y = 0;
+                deltaPosition.y = 0;    
             }
 
             _joystickValue.x = EvaluateInputValue(deltaPosition.x);
@@ -183,16 +221,33 @@ namespace HyperCasualRunner
         private void OnFail()
         {
             failPanel.SetActive(true);
+            failPanel.transform.DOShakeScale(1, .4f);
+            Player.Instance.OnInteractionBegin();
         }
 
         private void OnSuccess()
         {
             succesPanel.SetActive(true);
+            succesPanel.transform.DOShakeScale(1, .4f);
+            StartCoroutine(Wait1scn());
+            for (int i = 0; i < 3; i++)
+            {
+                particles[i].Play();
+            }
+        }
+
+        IEnumerator Wait1scn()
+        {
+            yield return new WaitForSeconds(0.75f);
+            Player.Instance.OnInteractionBegin();
         }
 
         public void RestartScene()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        } public void NextScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
         }
 
         public void Flag1()
@@ -203,14 +258,26 @@ namespace HyperCasualRunner
         public void flag()
         {
             animator1.SetTrigger("Flag");
+            for (int i = 0; i < 2; i++)
+            {
+                flagAllParticle[i].Play();
+            }
         }
         public void Flag2()
         {
             animator2.SetTrigger("Flag2");
+            for (int i = 2; i < 4; i++)
+            {
+                flagAllParticle[i].Play();
+            }
         }
         public void Flag3()
         {
             animator3.SetTrigger("Flag3");
+            for (int i = 4; i < 6; i++)
+            {
+                flagAllParticle[i].Play();
+            }
         }
     }
 }
