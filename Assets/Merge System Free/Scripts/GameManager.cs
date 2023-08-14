@@ -18,14 +18,14 @@ public class GameManager : MonoBehaviour
     public float energy = 25f;
     public float money;
     private float margeCost = 185f;
-    private float margeSame = 370f;
+    private float margeSame = 1370f;
 
     public GameObject[] goals;
     public bool isMergeOver;
 
     private Dictionary<int, Slot> slotDictionary;
 
-    int[] numbers = { 0, 3, 6 , 9 };
+    int[] numbers = { 0, 3, 6, 9 };
 
     [SerializeField] private Button apply;
     [SerializeField] private Button add;
@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Slider energySlider;
 
     [SerializeField] private ParticleSystem moneyEffect;
+
+    [SerializeField] private ParticleSystem[] carParticle;
 
 
     private void Awake()
@@ -288,6 +290,17 @@ public class GameManager : MonoBehaviour
             apply.transform.DOShakeScale(duraiton,strenght,vibrato,randomness);
             animator.SetTrigger("donwCar"); 
             PlayerPrefs.SetFloat(nameof(money), money);
+            StartCoroutine(wait1scn(0.75f));
+        }
+
+        IEnumerator wait1scn(float time)
+        {
+            yield return new WaitForSeconds(time);
+
+            for (int i = 0; i < 2; i++)
+            {
+                carParticle[i].Play();
+            }
         }
     }
 

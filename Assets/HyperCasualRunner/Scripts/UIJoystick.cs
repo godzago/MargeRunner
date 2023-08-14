@@ -100,11 +100,11 @@ namespace HyperCasualRunner
             scorText.text = coinValue.ToString();
             if (succesButton != null)
             {
-                succesButton.onClick.AddListener(NextScene);
+                succesButton.onClick.AddListener(LoadMarge);
             }
             if (failButton != null)
             {
-                failButton.onClick.AddListener(NextScene);
+                failButton.onClick.AddListener(LoadMarge);
             }
             for (int i = 0; i < 3; i++)
             {
@@ -242,13 +242,11 @@ namespace HyperCasualRunner
             Player.Instance.OnInteractionBegin();
         }
 
-        public void RestartScene()
+        public void LoadMarge()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        } public void NextScene()
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
+            SceneManager.LoadScene("marge");
         }
+
 
         public void Flag1()
         {

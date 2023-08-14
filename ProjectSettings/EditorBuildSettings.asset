@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/HyperCasualRunner/Demos/_Games/EvolutionOfCars/runner.unity
     guid: fc811fd77585148edbd8931ac966ea2e
+  - enabled: 1
+    path: Assets/HyperCasualRunner/Demos/_Games/EvolutionOfCars/runner2.unity
+    guid: 7b0c24daf8d6d904cb8171d4db4feb50
+  - enabled: 1
+    path: Assets/HyperCasualRunner/Demos/_Games/EvolutionOfCars/runner3.unity
+    guid: 69c554eace545aa47b8045207794f707
   m_configObjects: {}

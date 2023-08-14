@@ -12,8 +12,11 @@ public class SceneController : MonoBehaviour
 
     [SerializeField] private Button applyButton;
 
+    public static int sceneNumber;
+     
     private void Awake()
     {
+
         if (instance == null)
         {
             instance = this;
@@ -31,9 +34,18 @@ public class SceneController : MonoBehaviour
         }
     }
 
-
     public void SceneManagerClass()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1 );
+        if (sceneNumber < 3)
+        {
+            sceneNumber += 1;
+            Debug.Log("" + sceneNumber);
+        }
+        else
+        {
+            sceneNumber = Random.Range(1, 3);
+        }
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + sceneNumber );
     }
 }
