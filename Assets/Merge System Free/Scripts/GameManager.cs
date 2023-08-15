@@ -61,11 +61,11 @@ public class GameManager : MonoBehaviour
 
         if (PlayerPrefs.HasKey(nameof(money)) == false)
         {
-            PlayerPrefs.SetFloat(nameof(money) , 20000);
+            PlayerPrefs.SetFloat(nameof(money) , 5000);
         } 
         if (PlayerPrefs.HasKey(nameof(energy)) == false)
         {
-            PlayerPrefs.SetFloat(nameof(energy) , 0);
+            PlayerPrefs.SetFloat(nameof(energy), 5);
         }
 
         moneyEffect.Stop();
@@ -83,6 +83,8 @@ public class GameManager : MonoBehaviour
             slots[i].id = i;
             slotDictionary.Add(i, slots[i]);
         }
+
+        scoreText.text = money.ToString();
     }
 
     //handle user input

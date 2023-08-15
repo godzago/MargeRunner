@@ -19,7 +19,7 @@ public class CollectableObject : MonoBehaviour
                 Vector3 targetPos = UIJoystick.Instance.GetIconPostion(transform.position);
                 if (Vector2.Distance(transform.position, targetPos) > 0.5f)
                 {
-                    transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 5f);
+                    transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 10f);
                 }
                 else
                 {

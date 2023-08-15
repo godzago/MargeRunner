@@ -15,9 +15,6 @@ using System.Collections;
 
 namespace HyperCasualRunner
 {
-    /// <summary>
-    /// It's a general purpose joystick.
-    /// </summary>
     public class UIJoystick : MonoBehaviour
     {
         private static UIJoystick instance;
@@ -223,6 +220,10 @@ namespace HyperCasualRunner
             failPanel.SetActive(true);
             failPanel.transform.DOShakeScale(1, .4f);
             Player.Instance.OnInteractionBegin();
+
+            PlayerPrefs.SetFloat("energy", 0);
+
+            PlayerPrefs.SetFloat("money", coinValue);
         }
 
         private void OnSuccess()
@@ -234,6 +235,10 @@ namespace HyperCasualRunner
             {
                 particles[i].Play();
             }
+
+            PlayerPrefs.SetFloat("energy", 0);
+
+            PlayerPrefs.SetFloat("money", coinValue);
         }
 
         IEnumerator Wait1scn()
