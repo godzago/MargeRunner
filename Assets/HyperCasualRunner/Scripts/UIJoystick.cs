@@ -252,7 +252,6 @@ namespace HyperCasualRunner
             SceneManager.LoadScene("marge");
         }
 
-
         public void Flag1()
         {
             animator.SetTrigger("flag_On");

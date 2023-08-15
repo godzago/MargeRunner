@@ -9,7 +9,6 @@ public class SceneController : MonoBehaviour
     private static SceneController instance;
     public static SceneController Instance { get { return instance; } }
 
-
     [SerializeField] private Button applyButton;
 
     public static int sceneNumber;

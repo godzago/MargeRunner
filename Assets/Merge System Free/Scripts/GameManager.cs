@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private ParticleSystem[] carParticle;
 
+    private bool okey = false;
+
 
     private void Awake()
     {
@@ -84,7 +86,7 @@ public class GameManager : MonoBehaviour
             slotDictionary.Add(i, slots[i]);
         }
 
-        scoreText.text = money.ToString();
+        okey = RandomItemOnStart();
     }
 
     //handle user input
@@ -208,7 +210,7 @@ public class GameManager : MonoBehaviour
 
     public void PlaceRandomItem()
     {
-        add.transform.DOShakeScale(duraiton, strenght, vibrato, randomness);
+
 
         if (money >= margeCost)
         {
@@ -232,11 +234,13 @@ public class GameManager : MonoBehaviour
 
             slot.CreateItem(randomIndexSlat);
 
-            if (SlotState.Full != null)
+            if (SlotState.Full != null && okey)
             {
                 money -= margeCost;
-                scoreText.text = money.ToString();
+                add.transform.DOShakeScale(duraiton, strenght, vibrato, randomness);
             }
+
+            scoreText.text = money.ToString();
         }
     }
 
@@ -314,6 +318,15 @@ public class GameManager : MonoBehaviour
             {
                 return false;
             }
+        }
+        return true;
+    }
+
+    bool RandomItemOnStart()
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            PlaceRandomItem();
         }
         return true;
     }
