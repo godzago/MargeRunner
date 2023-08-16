@@ -11,7 +11,7 @@ public class SceneController : MonoBehaviour
 
     [SerializeField] private Button applyButton;
 
-    public static int sceneNumber;
+    public static int sceneNumber = 1;
      
     private void Awake()
     {
@@ -37,7 +37,6 @@ public class SceneController : MonoBehaviour
     {
         if (sceneNumber < 3)
         {
-            sceneNumber += 1;
             Debug.Log("" + sceneNumber);
         }
         else

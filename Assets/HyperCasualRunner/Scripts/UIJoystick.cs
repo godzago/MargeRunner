@@ -224,6 +224,8 @@ namespace HyperCasualRunner
             PlayerPrefs.SetFloat("energy", 0);
 
             PlayerPrefs.SetFloat("money", coinValue);
+
+
         }
 
         private void OnSuccess()
@@ -239,6 +241,8 @@ namespace HyperCasualRunner
             PlayerPrefs.SetFloat("energy", 0);
 
             PlayerPrefs.SetFloat("money", coinValue);
+
+            SceneController.sceneNumber += 1;
         }
 
         IEnumerator Wait1scn()
