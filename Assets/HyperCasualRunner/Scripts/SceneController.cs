@@ -35,7 +35,7 @@ public class SceneController : MonoBehaviour
 
     public void SceneManagerClass()
     {
-        if (sceneNumber < 3)
+        if (sceneNumber <= 3)
         {
             Debug.Log("" + sceneNumber);
         }
