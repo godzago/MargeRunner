@@ -1,21 +1,16 @@
-MargeRunner
-This project is made for UDO Games Next Gen Developers Internship Program. After 3 weeks of training, we created a game in 4 days working as a group. We decided to make an Arcade Idle Hypercasual game. You can access our GDD by this link. We used Trello for organizing the project our Trello page.
+# MargeRunner
 
-Team
-Ata Ayyıldız
+I made this project to try out marge mechanics and for our team RPS mobile games.
 
-Arif Ulaş Demirdöven
+# How To Play
+Our main goal in the game is to get the car to the finish line. To do this, we need to improve the car, and after completing the improvements, we discover how far we can take the car by playing. In order to get energy, we need to make matches; we can increase our energy level by matching the right pieces.
 
-Ahmet Senocak
-
-How To Play
-The goal is to keep the monster. The burgers are escaping from the monster and we try to catch burgers and feed the monster with the burgers. We have six fences to keep burgers inside but burgers can brake the fences. We can repair fences using our coins. We can earn coins by feeding the monster.
-
-Unity Version
+# Unity Version
 2022.3.5f1
 Preview
 
-For More Gameplay
+# For More Gameplay
+
 ![test1](https://github.com/godzago/MargeRunner/assets/48593494/37d2c3ed-e70d-408e-a613-864e0c22e9ba)
 
 ![test2](https://github.com/godzago/MargeRunner/assets/48593494/e73c47dc-a3f3-4014-ada3-8fe4599f5619)
