@@ -12241,6 +12241,10 @@ MonoBehaviour:
   slider: {fileID: 474493652}
   countdownTime: 3.5
   particle: {fileID: 1077866691}
+  duraiton: 0.9
+  strenght: 1
+  vibrato: 4
+  randomness: 0
 --- !u!143 &1741984881
 CharacterController:
   m_ObjectHideFlags: 0
@@ -12279,10 +12283,6 @@ MonoBehaviour:
   _useAnimation: 0
   _animatorModifier: {fileID: 0}
   _animationModifier: {fileID: 0}
-  duraiton: 0.9
-  strenght: 1
-  vibrato: 4
-  randomness: 0
 --- !u!114 &1741984886
 MonoBehaviour:
   m_ObjectHideFlags: 0

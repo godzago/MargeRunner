@@ -58,6 +58,19 @@ namespace HyperCasualRunner.Locomotion
 
         [SerializeField] ParticleSystem particle;
 
+        private float CoinValue = 100f;
+        private float ObstacleValue = -470f;
+
+        float Charge;
+
+        [SerializeField] private float duraiton;
+        [SerializeField] private float strenght;
+        [SerializeField] private int vibrato;
+        [SerializeField] private float randomness;
+
+        bool isShakeing;
+
+
         public float ForwardMoveSpeed { get => _forwardMoveSpeed; set => _forwardMoveSpeed = value; }
 
         void Start()
@@ -143,6 +156,47 @@ namespace HyperCasualRunner.Locomotion
                         _gameObjectToTurn.transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
                 }
             
+        }
+
+        public IEnumerator ShakeAnimation(float time)
+        {
+            isShakeing = true;
+            transform.DOShakeScale(duraiton, strenght, vibrato, randomness);
+            yield return new WaitForSeconds(time);
+            isShakeing = false;
+        }
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("Coin"))
+            {
+                other.GetComponent<CollectableObject>().SetCollected();
+                UIJoystick.Instance.AddCountCoins(CoinValue);
+                AudioManager.instance.PlaySFX("coinSource");
+            }
+            if (other.gameObject.CompareTag("Obstacle") && isShakeing == false)
+            {
+                UIJoystick.Instance.AddCountCoins(ObstacleValue);
+                StartCoroutine(ShakeAnimation(1f));
+                currentTime -= 15f;
+            }
+
+            if (other.gameObject.CompareTag("Flag"))
+            {
+                EventManager.AfterFlag.Invoke();
+            }
+            if (other.gameObject.CompareTag("Flag2"))
+            {
+                EventManager.Flag2.Invoke();
+            }
+            if (other.gameObject.CompareTag("flag3"))
+            {
+                EventManager.Flag3.Invoke();
+            }
+            if (other.gameObject.CompareTag("FinishLine"))
+            {
+                Debug.Log("Game Over");
+                EventManager.levelSuccessEvent.Invoke();
+            }
         }
         private void Update()
         {
