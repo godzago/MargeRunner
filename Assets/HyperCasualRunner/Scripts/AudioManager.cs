@@ -5,7 +5,6 @@ using System;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
-    public static AudioManager Instance { get { return Instance; } }
 
     [SerializeField] Sound[] musicSound, sfxSound;
     [SerializeField] AudioSource musicSource, sfxSource;
@@ -13,7 +12,7 @@ public class AudioManager : MonoBehaviour
     // coinSource, winSource, lossSource, addSource, carDonwSource, finishSource;
     public void Awake()
     {
-        if (Instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);

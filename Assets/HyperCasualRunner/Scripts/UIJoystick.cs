@@ -220,7 +220,7 @@ namespace HyperCasualRunner
             failPanel.SetActive(true);
             failPanel.transform.DOShakeScale(1, .4f);
             Player.Instance.OnInteractionBegin();
-
+            AudioManager.instance.PlaySFX("lossSource");
             PlayerPrefs.SetFloat("energy", 0);
 
             PlayerPrefs.SetFloat("money", coinValue);
@@ -231,6 +231,7 @@ namespace HyperCasualRunner
         private void OnSuccess()
         {
             succesPanel.SetActive(true);
+            AudioManager.instance.PlaySFX("finishSource");
             succesPanel.transform.DOShakeScale(1, .4f);
             StartCoroutine(Wait1scn());
             for (int i = 0; i < 3; i++)

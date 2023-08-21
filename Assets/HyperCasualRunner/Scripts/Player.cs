@@ -33,7 +33,7 @@ namespace HyperCasualRunner
         [SerializeField, ShowIf(nameof(_useAnimation))] AnimationModifier _animationModifier;
 
         private float CoinValue = 100f;
-        private float ObstacleValue = -370f;
+        private float ObstacleValue = -470f;
 
         ITickable[] _tickables;
 
@@ -160,7 +160,8 @@ namespace HyperCasualRunner
             if (other.gameObject.CompareTag("Coin"))
             {
                 other.GetComponent<CollectableObject>().SetCollected();
-                UIJoystick.Instance.AddCountCoins(CoinValue);            
+                UIJoystick.Instance.AddCountCoins(CoinValue);
+                AudioManager.instance.PlaySFX("coinSource");
             }
             if (other.gameObject.CompareTag("Obstacle") && isShakeing == false) 
             {

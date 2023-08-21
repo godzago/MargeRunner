@@ -211,7 +211,6 @@ public class GameManager : MonoBehaviour
     public void PlaceRandomItem()
     {
 
-
         if (money >= margeCost)
         {
             int randomIndex = Random.Range(0, 4);
@@ -237,6 +236,7 @@ public class GameManager : MonoBehaviour
             if (SlotState.Full != null && okey)
             {
                 money -= margeCost;
+                AudioManager.instance.PlaySFX("addSource");
                 add.transform.DOShakeScale(duraiton, strenght, vibrato, randomness);
             }
 
@@ -278,6 +278,7 @@ public class GameManager : MonoBehaviour
             energy += 25f;
             PlayerPrefs.SetFloat(nameof(energy), energy);
             energySlider.value = energy;
+            AudioManager.instance.PlaySFX("winSource");
         }
         else
         {
@@ -292,9 +293,10 @@ public class GameManager : MonoBehaviour
 
         if (isMergeOver)
         {
+            AudioManager.instance.PlaySFX("carDonwSource");
             apply.GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
             apply.transform.DOShakeScale(duraiton,strenght,vibrato,randomness);
-            animator.SetTrigger("donwCar"); 
+            animator.SetTrigger("donwCar");
             PlayerPrefs.SetFloat(nameof(money), money);
             StartCoroutine(wait1scn(0.75f));
         }
