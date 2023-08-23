@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button add;
 
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI levelText;
 
     [SerializeField] private float duraiton;
     [SerializeField] private float strenght;
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
 
     private bool okey = false;
 
+  
 
     private void Awake()
     {
@@ -77,6 +79,8 @@ public class GameManager : MonoBehaviour
     {
         energy = PlayerPrefs.GetFloat(nameof(energy));
         money = PlayerPrefs.GetFloat(nameof(money));
+
+        levelText.text = SceneController.sceneNumber.ToString();
 
         slotDictionary = new Dictionary<int, Slot>();
 
