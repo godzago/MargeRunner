@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] Sound[] musicSound, sfxSound;
     [SerializeField] AudioSource musicSource, sfxSource;
 
-    // coinSource, winSource, lossSource, addSource, carDonwSource, finishSource;
+    // coinSource, winSource, lossSource, addSource, carDonwSource, finishSource ,win2Source , margeSource , flagSource;
     public void Awake()
     {
         if (instance == null)

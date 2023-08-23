@@ -195,6 +195,7 @@ namespace HyperCasualRunner.Locomotion
             if (other.gameObject.CompareTag("FinishLine"))
             {
                 Debug.Log("Game Over");
+                AudioManager.instance.PlaySFX(" win2Source");
                 EventManager.levelSuccessEvent.Invoke();
             }
         }

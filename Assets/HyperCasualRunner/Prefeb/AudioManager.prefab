@@ -316,5 +316,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 329c7e413d6955a4e8afe55e3b75a931, type: 3}
   - name: finishSource
     clip: {fileID: 8300000, guid: c55640affa5f0b046a56e103ce955d43, type: 3}
+  - name: ' win2Source'
+    clip: {fileID: 8300000, guid: 56b41b2196102724096dd1b8b70054b5, type: 3}
+  - name: margeSource
+    clip: {fileID: 8300000, guid: 281d1a11522828948abc85f6ec17d787, type: 3}
+  - name: flagSource
+    clip: {fileID: 8300000, guid: 4727587de7c97b148a5c98d95a5a5e8f, type: 3}
   musicSource: {fileID: 3339632601963665836}
   sfxSource: {fileID: 3339632601306003051}

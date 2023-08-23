@@ -232,7 +232,7 @@ namespace HyperCasualRunner
         {
             succesPanel.SetActive(true);
             AudioManager.instance.PlaySFX("finishSource");
-            succesPanel.transform.DOShakeScale(1, .4f);
+            succesPanel.transform.DOShakeScale(1, 0.4f);
             StartCoroutine(Wait1scn());
             for (int i = 0; i < 3; i++)
             {
@@ -264,6 +264,7 @@ namespace HyperCasualRunner
 
         public void flag()
         {
+            AudioManager.instance.PlaySFX("flagSource");
             animator1.SetTrigger("Flag");
             for (int i = 0; i < 2; i++)
             {
@@ -272,6 +273,7 @@ namespace HyperCasualRunner
         }
         public void Flag2()
         {
+            AudioManager.instance.PlaySFX("flagSource");
             animator2.SetTrigger("Flag2");
             for (int i = 2; i < 4; i++)
             {
@@ -280,6 +282,7 @@ namespace HyperCasualRunner
         }
         public void Flag3()
         {
+            AudioManager.instance.PlaySFX("flagSource");
             animator3.SetTrigger("Flag3");
             for (int i = 4; i < 6; i++)
             {

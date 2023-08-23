@@ -121,6 +121,7 @@ public class GameManager : MonoBehaviour
             var slot = hit.transform.GetComponent<Slot>();
             if (slot.state == SlotState.Full && carryingItem == null)
             {
+                AudioManager.instance.PlaySFX("margeSource");
                 var itemGO = (GameObject)Instantiate(Resources.Load("Prefabs/ItemDummy"));
                 itemGO.transform.position = slot.transform.position;
                 itemGO.transform.localScale = Vector3.one * 2;
