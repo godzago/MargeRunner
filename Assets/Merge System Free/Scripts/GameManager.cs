@@ -80,9 +80,9 @@ public class GameManager : MonoBehaviour
         energy = PlayerPrefs.GetFloat(nameof(energy));
         money = PlayerPrefs.GetFloat(nameof(money));
 
-        levelText.text = SceneController.sceneNumber.ToString();
-
         slotDictionary = new Dictionary<int, Slot>();
+
+        levelText.text = SceneController.sceneNumber.ToString();
 
         for (int i = 0; i < slots.Length; i++)
         {

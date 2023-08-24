@@ -31,10 +31,7 @@ public class SceneController : MonoBehaviour
         {
             applyButton.onClick.AddListener(SceneManagerClass);
         }
-    }
 
-    public void SceneManagerClass()
-    {
         if (sceneNumber <= 3)
         {
             Debug.Log("" + sceneNumber);
@@ -43,7 +40,12 @@ public class SceneController : MonoBehaviour
         {
             sceneNumber = Random.Range(1, 3);
         }
+    }
+
+    public void SceneManagerClass()
+    {      
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + sceneNumber );
+
     }
 }
