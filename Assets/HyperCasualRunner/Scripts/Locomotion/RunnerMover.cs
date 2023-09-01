@@ -76,7 +76,6 @@ namespace HyperCasualRunner.Locomotion
         void Start()
         {
             currentTime = PlayerPrefs.GetFloat("energy");
-            slider.maxValue = 100f;
             slider.value = currentTime;
             particle.Stop();
         }
@@ -177,7 +176,7 @@ namespace HyperCasualRunner.Locomotion
             {
                 UIJoystick.Instance.AddCountCoins(ObstacleValue);
                 StartCoroutine(ShakeAnimation(1f));
-                currentTime -= 15f;
+                currentTime -= 105f;
             }
 
             if (other.gameObject.CompareTag("Flag"))

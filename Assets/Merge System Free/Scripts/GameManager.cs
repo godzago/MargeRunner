@@ -27,12 +27,15 @@ public class GameManager : MonoBehaviour
 
     int[] numbers = { 0, 3, 6, 9 };
 
+    [Header("Button")]
     [SerializeField] private Button apply;
     [SerializeField] private Button add;
 
+    [Header("Text")]
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI levelText;
 
+    [Header("DOTWeen effect")]
     [SerializeField] private float duraiton;
     [SerializeField] private float strenght;
     [SerializeField] private int vibrato;
@@ -42,13 +45,17 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Slider energySlider;
 
+    [Header("Particle")]
     [SerializeField] private ParticleSystem moneyEffect;
+
+    [SerializeField] private ParticleSystem[] sliderParticle;
 
     [SerializeField] private ParticleSystem[] carParticle;
 
     private bool okey = false;
 
-  
+    private float currentVelocity =0f;
+
 
     private void Awake()
     {
@@ -112,8 +119,9 @@ public class GameManager : MonoBehaviour
             SendRayCast();
         }
 
+        float currentScore = Mathf.SmoothDamp(energySlider.value, energy, ref currentVelocity, 175 * Time.deltaTime);
+        energySlider.value = currentScore;
     }
-
     void SendRayCast()
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
@@ -277,13 +285,12 @@ public class GameManager : MonoBehaviour
             Vector3 pos = goals[a].transform.position;
             goals[a].transform.position = slot.transform.position;
             goals[a].active = true;
-            goals[a].transform.DOMove(pos, 1f);
+            goals[a].transform.DOMove(pos, 1f).OnComplete(() => SettingsSliderParticle(a));
             Destroy(slot.currentItem.gameObject);
             slot.state = SlotState.Empty;
+            AudioManager.instance.PlaySFX("winSource");
             energy += 25f;
             PlayerPrefs.SetFloat(nameof(energy), energy);
-            energySlider.value = energy;
-            AudioManager.instance.PlaySFX("winSource");
         }
         else
         {
@@ -294,6 +301,7 @@ public class GameManager : MonoBehaviour
             moneyEffect.transform.position = slot.transform.position + new Vector3(0,0,-2);
             moneyEffect.Play();
         }
+
         isMergeOver = isAllItemActive();
 
         if (isMergeOver)
@@ -315,6 +323,11 @@ public class GameManager : MonoBehaviour
                 carParticle[i].Play();
             }
         }
+    }
+
+    void SettingsSliderParticle(int a)
+    {
+        sliderParticle[a].Play();
     }
 
     bool isAllItemActive()

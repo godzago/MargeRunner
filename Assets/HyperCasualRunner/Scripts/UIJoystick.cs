@@ -221,11 +221,8 @@ namespace HyperCasualRunner
             failPanel.transform.DOShakeScale(1, .4f);
             Player.Instance.OnInteractionBegin();
             AudioManager.instance.PlaySFX("lossSource");
-            PlayerPrefs.SetFloat("energy", 0);
-
+            PlayerPrefs.SetFloat("energy", 5);
             PlayerPrefs.SetFloat("money", coinValue);
-
-
         }
 
         private void OnSuccess()
