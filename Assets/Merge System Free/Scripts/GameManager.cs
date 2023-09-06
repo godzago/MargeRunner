@@ -56,6 +56,8 @@ public class GameManager : MonoBehaviour
 
     private float currentVelocity =0f;
 
+    public GameObject[] lastItems;
+
 
     private void Awake()
     {
@@ -212,7 +214,6 @@ public class GameManager : MonoBehaviour
         }
         Destroy(carryingItem.gameObject);
 
-
     }
     void OnItemCarryFail()  
     {
@@ -312,6 +313,9 @@ public class GameManager : MonoBehaviour
             animator.SetTrigger("donwCar");
             PlayerPrefs.SetFloat(nameof(money), money);
             StartCoroutine(wait1scn(0.75f));
+
+            Margever();
+                
         }
 
         IEnumerator wait1scn(float time)
@@ -350,4 +354,16 @@ public class GameManager : MonoBehaviour
         }
         return true;
     }
+
+    private void Margever()
+    {
+        lastItems = GameObject.FindGameObjectsWithTag("Item");
+
+        for (int i = 0; i < lastItems.Length; i++)
+        {
+
+            Destroy(lastItems[i]);
+        }
+    }
+
 }

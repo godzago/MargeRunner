@@ -12525,8 +12525,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ba9cf15881ef544a8cfb9574dd2533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _horizontalMoveSpeed: 60
-  _forwardMoveSpeed: 7
+  _horizontalMoveSpeed: 70
+  _forwardMoveSpeed: 8
   _canControlForwardMovement: 0
   _shouldOrientUpDirectionToGround: 1
   _orientUpDirectionRange: 6

@@ -10,6 +10,7 @@ TagManager:
   - Flag
   - Flag2
   - flag3
+  - Item
   layers:
   - Default
   - TransparentFX

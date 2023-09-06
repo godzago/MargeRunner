@@ -198,7 +198,7 @@ namespace HyperCasualRunner.Locomotion
                 EventManager.levelSuccessEvent.Invoke();
             }
         }
-        private void Update()
+        private void LateUpdate()
         {
             SliderBarSettigs();
         }
