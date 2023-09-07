@@ -148,44 +148,5 @@ namespace HyperCasualRunner
                 _animatorModifier.PlayLocomotion(0f);
             }
         }
-        //public IEnumerator ShakeAnimation(float time)
-        //{
-        //    isShakeing = true;
-        //    transform.DOShakeScale(duraiton, strenght, vibrato, randomness);
-        //    yield return new WaitForSeconds(time);
-        //    isShakeing = false;
-        //}
-        //private void OnTriggerEnter(Collider other)
-        //{
-        //    if (other.gameObject.CompareTag("Coin"))
-        //    {
-        //        other.GetComponent<CollectableObject>().SetCollected();
-        //        UIJoystick.Instance.AddCountCoins(CoinValue);
-        //        AudioManager.instance.PlaySFX("coinSource");
-        //    }
-        //    if (other.gameObject.CompareTag("Obstacle") && isShakeing == false) 
-        //    {
-        //        UIJoystick.Instance.AddCountCoins(ObstacleValue);
-        //        StartCoroutine(ShakeAnimation(1f));               
-        //    }
-
-        //    if (other.gameObject.CompareTag("Flag"))
-        //    {
-        //        EventManager.AfterFlag.Invoke();
-        //    }
-        //    if (other.gameObject.CompareTag("Flag2"))
-        //    {
-        //        EventManager.Flag2.Invoke();
-        //    }
-        //    if (other.gameObject.CompareTag("flag3"))
-        //    {
-        //        EventManager.Flag3.Invoke();
-        //    }
-        //    if (other.gameObject.CompareTag("FinishLine"))
-        //    {
-        //        Debug.Log("Game Over");
-        //        EventManager.levelSuccessEvent.Invoke();
-        //    }
-        //}       
     }
 }

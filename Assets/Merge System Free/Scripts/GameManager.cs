@@ -54,10 +54,13 @@ public class GameManager : MonoBehaviour
 
     private bool okey = false;
 
-    private float currentVelocity =0f;
+    private float currentVelocity = 0f;
 
-    public GameObject[] lastItems;
 
+    [Header("margeOverAnimation")]
+    [HideInInspector] public GameObject[] lastItems;
+    [SerializeField]public Transform lastTrasnform;
+    [SerializeField]public ParticleSystem[] margeOverParticle;
 
     private void Awake()
     {
@@ -311,7 +314,7 @@ public class GameManager : MonoBehaviour
             apply.GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
             apply.transform.DOShakeScale(duraiton,strenght,vibrato,randomness);
             animator.SetTrigger("donwCar");
-            PlayerPrefs.SetFloat(nameof(money), money);
+            
             StartCoroutine(wait1scn(0.75f));
 
             Margever();
@@ -361,9 +364,26 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < lastItems.Length; i++)
         {
-
-            Destroy(lastItems[i]);
+            //lastItems[i].transform.position = lastTrasnform.position;
+            lastItems[i].transform.DOMove(lastTrasnform.position, 2f);
+            StartCoroutine(MargeOverTime(2f, lastItems));
+            //Destroy(lastItems[i]);
         }
     }
 
+    IEnumerator MargeOverTime(float t , GameObject[] ýtem)
+    {
+        yield return new WaitForSeconds(t);
+        for (int i = 0; i < ýtem.Length; i++)
+        {
+            Destroy(ýtem[i]);
+            money += 25f;
+            scoreText.text = money.ToString();
+            PlayerPrefs.SetFloat(nameof(money), money);
+        }
+        for (int a = 0; a < margeOverParticle.Length; a++)
+        {
+            margeOverParticle[a].Play();
+        }
+    }
 }
