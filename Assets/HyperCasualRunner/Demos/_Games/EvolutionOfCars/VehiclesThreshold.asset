@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30dd12e977834c3ab0c8e7d92787ec50, type: 3}
   m_Name: VehiclesThreshold
   m_EditorClassIdentifier: 
-  _value: 8007000094070000c6070000e40700000208000034080000
+  _value: 6c07000094070000c6070000e40700000208000034080000

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Fpsstabilizer : MonoBehaviour
 {
     public static Fpsstabilizer instance;
-    private int targerRate = 60;
+    private int targerRate = 45;
     public void Awake()
     {
         Application.targetFrameRate = targerRate;

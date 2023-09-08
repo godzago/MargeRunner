@@ -114,47 +114,51 @@ namespace HyperCasualRunner.Locomotion
             {
                 return;
             }
-                    
-                var trans = transform;
-                Vector3 horizontalMovementRaw = trans.right * moveDirection.x;
-                Vector3 forwardMovementRaw = trans.forward * _forwardMoveSpeed * speedXValue;
-                _horizontalMovement = Vector3.SmoothDamp(_horizontalMovement, horizontalMovementRaw * _horizontalMoveSpeed, ref _horizontalVelocity, _horizontalSmoothingTime);
-                _forwardMovement = Vector3.SmoothDamp(_forwardMovement, forwardMovementRaw * _canGoForward, ref _forwardVelocity, _forwardSmoothingTime);
-                Vector3 totalInputMovement = _horizontalMovement + _forwardMovement;
 
-                if (_characterController.isGrounded)
-                {
-                    _gravitationalVelocity = _gravityPower * Time.deltaTime;
-                }
-                else
-                {
-                    _gravitationalVelocity += _gravityPower * Time.deltaTime;
-                }
+            var trans = transform;
+            Vector3 horizontalMovementRaw = trans.right * moveDirection.x;
+            Vector3 forwardMovementRaw = trans.forward * _forwardMoveSpeed;
+            _horizontalMovement = Vector3.SmoothDamp(_horizontalMovement, horizontalMovementRaw * _horizontalMoveSpeed, ref _horizontalVelocity, _horizontalSmoothingTime);
+            _forwardMovement = Vector3.SmoothDamp(_forwardMovement, forwardMovementRaw * _canGoForward, ref _forwardVelocity, _forwardSmoothingTime);
+            Vector3 totalInputMovement = _horizontalMovement + _forwardMovement;
 
-                Vector3 finalMovement = (totalInputMovement + transform.up * _gravitationalVelocity) * Time.deltaTime;
+            if (_characterController.isGrounded)
+            {
+                _gravitationalVelocity = _gravityPower * Time.deltaTime;
+            }
+            else
+            {
+                _gravitationalVelocity += _gravityPower * Time.deltaTime;
+            }
 
-                if (_shouldConstrainMovement)
-                {
-                    finalMovement = _movementConstrainer.GetConstrainedMotion(finalMovement, transform.position);
-                }
+            Vector3 finalMovement = (totalInputMovement + transform.up * _gravitationalVelocity) * Time.deltaTime;
 
-                _characterController.Move(finalMovement);
+            if (_shouldConstrainMovement)
+            {
+                finalMovement = _movementConstrainer.GetConstrainedMotion(finalMovement, transform.position);
+            }
 
-                if (_shouldOrientUpDirectionToGround)
-                {
-                    bool isNearGround = Physics.Raycast(transform.position, Vector3.down * _orientUpDirectionRange, out RaycastHit hitInfo, 2f);
-                    if (isNearGround) _groundNormal = hitInfo.normal;
-                }
+            _characterController.Move(finalMovement);
 
-                if (_turnToMovingDirection)
-                {
-                    // TODO: This part might cause problem when rotating
-                    Quaternion targetRotation = Quaternion.LookRotation(_initialForwardDirection + horizontalMovementRaw * _maxRotatingLimit, _groundNormal);
+            if (_shouldOrientUpDirectionToGround)
+            {
+                bool isNearGround = Physics.Raycast(transform.position, Vector3.down * _orientUpDirectionRange, out RaycastHit hitInfo, 2f);
+                if (isNearGround) _groundNormal = hitInfo.normal;
+            }
 
-                    _gameObjectToTurn.transform.rotation = Quaternion.Slerp(
-                        _gameObjectToTurn.transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
-                }
-            
+            if (_turnToMovingDirection)
+            {
+                // TODO: This part might cause problem when rotating
+                Quaternion targetRotation = Quaternion.LookRotation(_initialForwardDirection + horizontalMovementRaw * _maxRotatingLimit, _groundNormal);
+
+                _gameObjectToTurn.transform.rotation = Quaternion.Slerp(
+                    _gameObjectToTurn.transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+            }
+
+        }
+        void Reset()
+        {
+            _characterController = GetComponent<CharacterController>();
         }
 
         public IEnumerator ShakeAnimation(float time)
@@ -202,11 +206,6 @@ namespace HyperCasualRunner.Locomotion
         {
             SliderBarSettigs();
         }
-
-        void Reset()
-        {
-            _characterController = GetComponent<CharacterController>();
-        }
         void SliderBarSettigs()
         {
             if (currentTime > 0 && _canGoForward == 1)
@@ -219,7 +218,7 @@ namespace HyperCasualRunner.Locomotion
             {
                 EventManager.levelFailEvent.Invoke();
                 particle.Play();
-            }           
+            }
         }
     }
 }
