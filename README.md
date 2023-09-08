@@ -11,10 +11,11 @@ Preview
 
 # For More Gameplay
 
-![test1](https://github.com/godzago/MargeRunner/assets/48593494/37d2c3ed-e70d-408e-a613-864e0c22e9ba)
+![1](https://github.com/godzago/MargeRunner/assets/48593494/be1061ac-5ed8-4c31-8bf8-4dcc270b444a)
 
-![test2](https://github.com/godzago/MargeRunner/assets/48593494/e73c47dc-a3f3-4014-ada3-8fe4599f5619)
+![2](https://github.com/godzago/MargeRunner/assets/48593494/a708961a-bd93-435a-bdd7-f6afc46dee8a)
 
-![test4](https://github.com/godzago/MargeRunner/assets/48593494/82555f34-5180-4d9a-b0a6-aef96de4a5fd)
+![3](https://github.com/godzago/MargeRunner/assets/48593494/9406d86b-1e54-4db4-b563-6aac8578eed5)
+
 
 ![test3](https://github.com/godzago/MargeRunner/assets/48593494/389dc1f0-153f-460b-9710-387599bdc677)
